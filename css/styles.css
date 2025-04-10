@@ -1,0 +1,269 @@
+:root{
+    --blanco: #ffffff;
+    --negro: #000000;
+    --primario: #ffc107;
+    --secundario: #0097a7;
+    --gris: #757575;
+    
+    --fuente-principal: 3.8rem; /*Se puede almacenar cualquier valor*/
+}
+
+html{
+    font-size: 62.5%; /* Cambia el tamaño de la fuente base */
+    box-sizing: border-box; /*Hack para box model*/
+    scroll-snap-type: y mandatory;
+}
+
+/*Scroll snap*/
+.servicios, .navegacion-principal, .formulario{
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+}
+
+*, *::before, *::after{
+    box-sizing: inherit;
+}
+body{
+    font-size: 16px; /* 1rem = 10px */
+    font-family: "Krub", sans-serif;
+    background-image: linear-gradient(to top, #DFE9F3 0%, var(--blanco) 100%); /*Realiza un degradado de fondo*/
+}
+
+.sombra{
+    box-shadow: 0px 5px 15px 0px rgba(66,61,66,0.6);
+    background-color: var(--blanco);
+    padding: 2rem;
+    border-radius: 1rem;
+}
+h1{
+    font-size: 3.8rem;
+}
+h2{
+    font-size: 2.8rem;
+}
+h3{
+    font-size: 1.8rem;
+}
+h1,h2,h3 {
+    text-align:center;
+}
+
+
+.titulo span{
+    font-size: 2rem;
+}
+
+.contenedor{
+    max-width: 120rem;
+    /*Los margenes añaden separación, se puede simplificar mucho en las direcciones*/
+    margin: 0 auto 0 auto;
+}
+.boton{
+    background-color: var(--secundario);
+    color: var(--blanco);
+    padding: 1rem 3rem;
+    margin-top: 1rem;
+    font-size: 2rem;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    border-radius: .5rem;
+    width: 90%;
+    text-align: center;
+    border: none;
+}
+@media (min-width: 480px) {
+    .boton{
+        width: auto; /*Con esto el boton se adapta al tamaño del texto*/
+    }
+}
+.boton:hover{
+    cursor: pointer;
+}
+
+/*Utilidades*/
+.w-100{
+    width: 100%;
+}
+
+.nav-bg{
+    background-color: var(--secundario);
+}
+
+.navegacion-principal{
+    display: flex; /*Necesario para funciones de acomodo*/    
+    flex-direction: column;
+    
+}
+
+
+@media (min-width: 768px) {
+    .navegacion-principal{
+        flex-direction: row;
+        justify-content:space-evenly;
+    }
+
+}
+.navegacion-principal a{
+    display: block;
+    text-align: center;
+    padding: 1rem;
+    color: var(--blanco);
+    text-decoration: none;
+    font-size: 2rem;
+    font-weight: 700;
+}
+.navegacion-principal a:hover{
+    background-color: var(--primario);
+    color:var(--negro);
+    text-decoration: underline;
+}
+
+.hero{
+    background-image: url(../img/hero.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 45rem;
+    position: relative; /*Esto sirve como para mapear lo que va a estar en absolute*/
+    margin-bottom: 2rem;
+}
+.contenido-hero{
+    position: absolute;
+    background-color: rgba(0, 0, 0, .6);
+    width: 100%; /*Con esto ocupa todo el espacio en el padre que es hero*/
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /*Con esto se centra en el medio de todo*/ 
+}
+.contenido-hero h2, .contenido-hero p{
+    color: var(--blanco);
+}
+.ubicacion{
+    display: flex;
+    align-items: flex-end;
+}
+
+/*Servicios*/
+
+@media (min-width: 768px) {
+    .servicios{
+    display: grid; /*Grid es un plus de flex porque asi se puede utilizar tanto columnas con filas*/
+    grid-template-columns: repeat(3, 1fr); /*Con esto se le dice que se divida en 3 partes iguales, 1 fraccion*/
+    /*grid: 200px 200px / 200px 200px; Con esto se puede hacer lo mismo que las dos lineas de arriba*/
+    gap: 2rem; /*Espacio entre los elementos*/
+    }
+}
+.servicio{
+    display: flex;
+    flex-direction: column; /*Con esto se acomoda el contenido de arriba hacia abajo*/
+    align-items: center; 
+}
+
+.servicio h3{
+    color: var(--secundario);
+    font-weight: normal;
+}
+.servicio p{
+    line-height: 2;
+    text-align: center;
+
+}
+.servicio .iconos{
+    height: 15rem;
+    width: 15rem;
+    background-color: var(--primario);
+    border-radius: 50%; /*Con esto se hace un circulo*/
+    display: flex; /*Con esto se puede centrar el icono con aligin-items y justify-content*/
+    align-items: center; 
+    justify-content: space-evenly;
+}
+
+/*Contacto*/
+.formulario{
+    background-color: var(--gris);
+    width: min( 60rem, 100%); /*Utiliza el valor mas pequeño, muy util en responsivo*/
+    margin: 0 auto; /*Con esto se centra el formulario*/
+    padding: 2rem;
+    border-radius: 1rem;
+}
+
+.formulario fieldset{
+    border: none;
+}
+.formulario legend{
+    color:var(--primario);
+    text-align: center;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+    .contenedor-campos{
+        display: grid; 
+        grid-template-columns: repeat(2, 1fr); 
+        grid-template-rows: auto auto 15rem;
+        gap: 1rem; 
+    
+    }
+    .campo:nth-child(3){
+        grid-column: 1 / 3; /*Con esto se le dice que ocupe dos columnas*/
+        /*grid-row: 1 / 2; Con esto se le dice que ocupe de la posicion 1 a la 2*/
+    }
+    .campo:nth-child(4){
+        grid-column: span 2; /*Esto es lo mismo de otra manera*/
+    }
+}
+
+.campo{
+    margin-bottom: 1rem;
+
+}
+.campo label{
+    display: block;
+    color: var(--blanco);
+    font-weight: 700;
+    margin-bottom: .5rem;
+}
+.campo input, .campo textarea{
+    width: 100%;
+    padding: 1.5rem;
+    border-radius: .5rem;
+    border: none;
+    font-size: 1.6rem;
+}
+.botones-formulario{
+    display: flex;
+    justify-content:end;
+    margin-top: 2rem;
+    gap: 2rem;
+}
+
+@media (max-width: 768px) {
+    .reset-btn{
+        display: none;
+    }
+    .botones-formulario{
+        flex-direction: column; 
+        align-items: center;
+    }
+    .boton-enviar{
+        width: 100%;
+    }
+    .boton{
+        width: 100%;
+    }
+    
+}
+.botones-formulario{
+    justify-content: end;
+}
+
+/*Footer*/
+.footer{
+    text-align: center;
+}
